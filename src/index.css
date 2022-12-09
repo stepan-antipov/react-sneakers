@@ -1,0 +1,343 @@
+
+* {
+  font-family: 'Inter', system-ui;
+} 
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #E7F6FF;
+  height: 200%;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+a:link {
+  color: #000000;
+}
+a:visited {
+  color: #000000;
+}
+
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+
+input {
+  border: 0;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  outline:none;
+  
+}
+
+input::-webkit-input-placeholder { color: #C4C4C4 }
+
+
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent; 
+  cursor: pointer;
+}
+
+
+
+.drawer {
+  position: absolute;
+  width: 425px;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #FFFFFF;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 0 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 50;
+ 
+}
+
+
+
+.drawer h2{
+  font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+}
+
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+  height: 100%;
+  background-color: rgba(0,0,0,0.1);
+}
+
+
+#root {
+  height: 100vh;
+}
+
+.wrapper {
+
+margin: 0 auto;
+background: #FFFFFF;
+box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+border-radius: 20px;
+max-width: 1080px;
+
+
+}
+
+.content {
+  padding: 45px;
+}
+
+
+
+
+
+.container {
+  margin: 40px 0;
+}
+
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.headerRight span{
+ 
+  margin-left: 10px;
+  
+}
+
+.basket {
+  cursor: pointer;
+}
+
+
+.headerLeft img{
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+
+}
+
+.header-user {
+  margin-left: 30px;
+}
+
+.header-heart {
+  margin-left: 30px;
+}
+
+.card-section {
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 40px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchBlock {
+  border: 1px solid #f3f3f3;
+  display: flex;
+  border-radius: 25px;
+  
+}
+
+.searchBlock {
+  border: 1px solid #f3f3f3;
+  display: flex;
+  
+}
+
+.searchBlock img{
+  width: 20px;
+  padding-left: 14px;
+  padding-top: 3px;
+  
+}
+
+.cartInfo {
+  padding-bottom: 50px;
+}
+
+
+.drawer h2 {
+  margin-bottom: 30px;
+}
+
+.cart {
+  overflow: auto;
+  padding-top: 30px;
+}
+
+.cartTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.cartTop button {
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.closeButton {
+  width: 40px;
+}
+
+.mid  {
+  margin-left: 14px;
+}
+
+.mid p{
+  margin-bottom: 8px;
+}
+
+.cartItem {
+  border: 1px solid #F3F3F3;
+  border-radius: 30px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.cartItem button img{
+  width: 40px;
+  height: 40px;
+}
+
+.cartImg {
+  width: 100px;
+  height: 85px;
+}
+
+.cartTotalBlock div{
+  flex: 1;
+  border-bottom: dashed 1px #f0eeee; 
+  height: 15px;
+  margin: 0 7px;
+}
+
+
+.emptyBox {
+  margin-top: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emptyBox p {
+  max-width: 300px;
+  text-align: center;
+}
+
+.emptyBox h2 {
+  margin: 15px 0;
+}
+
+
+.cartInfo li{
+  display: flex;
+  margin-bottom: 20px;
+  
+}
+
+.greenButton{
+  width: 100%;
+  height: 55px;
+  background: #9DD558;
+border-radius: 18px;
+color: #f0f0f0;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+transition: background-color 0.3s;
+font-weight: 600;
+line-height: 19px;
+color: #FFFFFF;
+
+}
+
+.greenButton:hover{
+  background-color: #b1e86d;
+}
+
+.greenButton:active{
+  background-color: rgb(153, 200, 95);
+}
+
+
+
+.cartInfo img{
+position: absolute;
+top: 20;
+left: 347px;
+}
+
+.greenButton .arrowRight {
+  position: absolute;
+  top: 20px;
+  left: 100px;
+}
+
+.buttonTop {
+  margin-bottom: 530px;
+}
