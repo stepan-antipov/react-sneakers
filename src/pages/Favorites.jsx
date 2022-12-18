@@ -1,7 +1,11 @@
+import React from 'react';
 import Card from'../components/Card/Card';
+import { AppContext } from '../App';
 
+ function Favorites() {
+    const {favorites, onAddFavorite} = React.useContext(AppContext)
 
- function Favorites(props) {
+    
      return (
      <div>
         <main className="content">
@@ -15,19 +19,22 @@ import Card from'../components/Card/Card';
                 </div> */}
             </div>
             <section className="card-section">
-                {props.items.map((obj) => (
-                    <Card key={obj.imageUrl}
-                    id={obj.id}
-                    title={obj.title}
-                    price={obj.price}
-                    imageUrl={obj.imageUrl}
-                    onPlus={(obj) => props.onAddToCart(obj)} //Передаем в функцию onAddToCart массив и используем его при составлении элементов в корзне
-                    onRemove={(obj) => props.onRemoveItem(obj)}
-                    onFavorite={obj => props.onAddFavorite(obj)}
+                {favorites.map((obj, index) => (
+                    <Card key={index}
+                    // id={obj.id}
+                    // title={obj.title}
+                    // price={obj.price}
+                    // imageUrl={obj.imageUrl}
+                    // onPlus={(obj) => props.onAddToCart(obj)} //Передаем в функцию onAddToCart массив и используем его при составлении элементов в корзне
+                    // onRemove={(obj) => props.onRemoveItem(obj)}
+                    onFavorite={onAddFavorite}
+                    favorited={true}
+                    {...obj}
                     />
                 ))} 
             </section>
         </main>
     </div>)}
+
 
 export default Favorites;

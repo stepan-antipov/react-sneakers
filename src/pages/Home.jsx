@@ -1,31 +1,47 @@
+import React from 'react';
 import Card from'../components/Card/Card';
 
+function Home({
+    items, 
+    cartItems, 
+    searchValue, 
+    setSearchValue, 
+    onChangeSearchInput, 
+    onAddFavorite,
+    onAddToCart,
+    isLoading
+}) {
 
- function Home(props) {
+
+    const renderItems = () => {
+        const filtredItems = items.filter((item) =>
+            item.title.toLowerCase().includes(searchValue.toLowerCase())
+        )
+        return (isLoading ? [...Array(10)] : filtredItems).map((item, index) => (
+                <Card 
+                key={index}
+                onPlus={(obj) => onAddToCart(obj)} //Передаем в функцию onAddToCart массив и используем его при составлении элементов в корзне
+                onFavorite={obj => onAddFavorite(obj)}
+                loading={isLoading}
+                {...item}
+                /> 
+            ))
+    }
+
      return (  
      <div>
         <main className="content">
             <div className="top">
-                <h1>{props.searchValue ? `Поиск по запросу: "${props.searchValue}"` : 'Все кроссовки'}</h1>
+                <h1>{searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все кроссовки'}</h1>
                 <div className="searchBlock">
                     <button>
                     <img src="/img/search.svg" alt="search"></img>
                     </button>
-                    <input onChange={props.onChangeSearchInput} value={props.searchValue} type="search" placeholder="Поиск..."></input>
+                    <input onChange={onChangeSearchInput} value={searchValue} type="search" placeholder="Поиск..."></input>
                 </div>
             </div>
             <section className="card-section"> 
-                {props.items.filter(item => item.title.toLowerCase().includes(props.searchValue.toLowerCase())).map((obj) => (
-                    <Card key={obj.imageUrl}
-                    id={obj.id}
-                    title={obj.title}
-                    price={obj.price}
-                    imageUrl={obj.imageUrl}
-                    onPlus={(obj) => props.onAddToCart(obj)} //Передаем в функцию onAddToCart массив и используем его при составлении элементов в корзне
-                    onRemove={(obj) => props.onRemoveItem(obj)}
-                    onFavorite={obj => props.onAddFavorite(obj)}
-                    /> 
-                ))} 
+               { renderItems() }
             </section>
         </main>
     </div>)}
