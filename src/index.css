@@ -72,7 +72,8 @@ button {
 
 
 .drawer {
-  position: absolute;
+  position: fixed;
+  transform: translateX(100%);
   width: 425px;
   top: 0;
   right: 0;
@@ -84,7 +85,14 @@ button {
   flex-direction: column;
   justify-content: space-between;
   z-index: 50;
- 
+  transition: transform 0.35s ease-in-out;
+  opacity: 1;
+}
+
+.drawer--active {
+  transform: translateX(0);
+  opacity: 1;
+  
 }
 
 
@@ -104,11 +112,20 @@ line-height: 29px;
   z-index: 9;
   height: 100%;
   background-color: rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
+}
+
+.overlay--active {
+  visibility: visible;
+  opacity: 1;
+  
 }
 
 
 #root {
-  height: 100vh;
+  height: 100%;
 }
 
 .wrapper {
@@ -120,10 +137,12 @@ border-radius: 20px;
 max-width: 1080px;
 
 
+
 }
 
 .content {
   padding: 45px;
+
 }
 
 
@@ -132,6 +151,7 @@ max-width: 1080px;
 
 .container {
   margin: 40px 0;
+  
 }
 
 
@@ -159,8 +179,15 @@ max-width: 1080px;
   
 }
 
+
+
 .basket {
+ 
   cursor: pointer;
+}
+
+.header-basket {
+  
 }
 
 
@@ -283,6 +310,10 @@ max-width: 1080px;
   align-items: center;
 }
 
+.emptyBox img{
+  width: 120px;
+}
+
 .emptyBox p {
   max-width: 300px;
   text-align: center;
@@ -339,5 +370,184 @@ left: 347px;
 }
 
 .buttonTop {
-  margin-bottom: 530px;
+  margin-bottom: 580px;
+}
+
+/*******************************************************/
+
+@media (max-width: 1120px) {
+  .wrapper {
+    width: 900px;
+  }
+
+  .card-section{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 940px) {
+  .wrapper {
+    width: 780px;
+  }
+
+  .card-section {
+    column-gap: 10px;
+  }
+  .content {
+    padding-left: 22px;
+    padding-right: 15px;
+  }
+  .header {
+    padding: 0 15px;
+  }
+  h1 {
+    font-size: 1.7em;
+  }
+
+  
+}
+
+@media (max-width: 820px) { 
+  .wrapper {
+    width: 600px;
+  }
+  .card-section{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 630px) { 
+   h1 {
+     padding-left: 8px;
+   } 
+   .wrapper {
+    width: 500px;
+  }
+  .content {
+    padding-left: 7px;
+    padding-right: 11px;
+   }
+   .basket span {
+    display: none;
+   }
+}
+
+@media (max-width: 530px) {
+  .wrapper {
+    width: 440px;
+  }
+  .container {
+    margin: 10;
+  }
+  .content {
+    padding: 10px 0 0 0;
+   }
+   .header {
+    padding: 0 20px
+   }
+   h1 {
+    font-size: 1.4em;
+  }
+  .top {
+    padding: 25px 20px 0;
+  }
+  .card-section {
+    padding-top: 20px;
+  }
+  .card-section {
+    column-gap: 0px;
+  }
+  .headerRight {
+    margin-left: 1px;
+  }
+  .headerInfo {
+    width: 200px;
+  }
+
+  .drawer {
+    width: 400px;
+ }
+}
+
+@media (max-height: 1180px) {
+  .buttonTop{
+    margin-bottom: 540px;
+  }
+  .emptyBox {
+    /* margin-top: 190px; */
+  }
+}
+
+@media (max-height: 1140px) {
+  .buttonTop{
+    margin-bottom: 500px;
+  }
+
+}
+
+@media (max-height: 1100px) {
+  .buttonTop{
+    margin-bottom: 450px;
+  }
+
+}
+
+@media (max-height: 1050px) {
+  .buttonTop{
+    margin-bottom: 400px;
+  }
+  .emptyBox {
+    margin-top: 200px;
+  }
+}
+
+@media (max-height: 1000px) {
+  .buttonTop{
+    margin-bottom: 350px;
+  }
+  .emptyBox {
+    margin-top: 170px;
+  }
+}
+
+@media (max-height: 900px) {
+  .buttonTop{
+    margin-bottom: 300px;
+  }
+  .emptyBox {
+    margin-top: 150px;
+  }
+}
+
+@media (max-height: 820px) {
+  .buttonTop{
+    margin-bottom: 250px;
+  }
+  .emptyBox {
+    margin-top: 100px;
+  }
+}
+
+@media (max-height: 730px) {
+  .buttonTop{
+    margin-bottom: 200px;
+  }
+}
+
+@media (max-height: 666px) {
+  .buttonTop{
+    margin-bottom: 150px;
+  }
+  .emptyBox img {
+    width: 100px;
+  }
+}
+
+@media (max-height: 600px) {
+  .buttonTop{
+    margin-bottom: 100px;
+  }
+  .emptyBox {
+    margin-top: 50px;
+  }
 }

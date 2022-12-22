@@ -17,7 +17,7 @@ function Home({
         const filtredItems = items.filter((item) =>
             item.title.toLowerCase().includes(searchValue.toLowerCase())
         )
-        return (isLoading ? [...Array(10)] : filtredItems).map((item, index) => (
+        return (isLoading ? [...Array(12)] : filtredItems).map((item, index) => (
                 <Card 
                 key={index}
                 onPlus={(obj) => onAddToCart(obj)} //Передаем в функцию onAddToCart массив и используем его при составлении элементов в корзне

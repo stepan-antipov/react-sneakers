@@ -12,7 +12,6 @@ function Card({
   onPlus, 
   onFavorite, 
   favorited=false, 
-  added=false, 
   loading=false
 }) {
 
@@ -49,9 +48,11 @@ function Card({
           <rect x="118" y="164" rx="10" ry="10" width="32" height="32" />
         </ContentLoader> : 
         <>
+        {onFavorite &&
         <button onClick={onClickFavorite} className={styles.emptyHeart}>
         <img src={isFavorite ? "/img/redheart.svg" : "/img/emptyHeart.svg"} alt="избранное"></img>
       </button >
+        }
       <img src={imageUrl} alt=""></img>
       <p>
       {title}
@@ -62,9 +63,11 @@ function Card({
           <br></br>
           <b>{price} руб.</b>
         </div>
+        {onPlus &&
         <button onClick={onClickPlus} >
           <img src={isItemAdded(id) ? "./img/greenButton.svg" : './img/plus.svg'} alt=""></img>
         </button>
+        }
       </div>
       </>
         }

@@ -69,4 +69,20 @@
   }
 
   
-  
+  @media (max-width: 940px) {
+    /* .card {
+      width: 150px;
+    }
+    .card img{
+      max-width: 119px;
+    } */
+  }
+
+  @media (max-width: 440px) {
+    .card {
+      width: 150px;
+    }
+    .card img{
+      max-width: 119px;
+    }
+  }

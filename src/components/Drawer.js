@@ -1,12 +1,40 @@
-function Drawer({cartClose, onRemove, items = []}) {
+import React from "react"
+import axios from "axios"
+import {useCart} from "../hooks/useCart"
+
+function Drawer({cartClose, onRemove, items = [], opened}) {
+
+    const {cartItems, setCartItems, totalPrice} = useCart()
+    const [isOrderComplete, setIsOrderComplete] = React.useState(false)
+    const [orderId, setOrderId] = React.useState(null)
+
+    const onClickOrder = async () => {
+      try {
+        const {data} = await axios.post('https://638355396e6c83b7a990e6ac.mockapi.io/orders', {
+           items: cartItems
+      })
+      setOrderId(data.id)
+      setIsOrderComplete(true)
+      setCartItems([])
+
+      for(let i = 0; i < cartItems.length; i++) {
+        let item = cartItems[i]
+        await axios.delete('https://638355396e6c83b7a990e6ac.mockapi.io/cart/' + item.id)
+      }
+
+      } catch(error) {
+        console.log(error)
+      }
+    }
+
     return(
-    <div /*style={{position: "static"}}*/ className="overlay">
-        <div /*style={{display: "none"}}*/ className="drawer">
-          
+    <div className={opened ? 'overlay overlay--active' : 'overlay'}>
+        <div className={opened ? 'drawer drawer--active' : 'drawer'}>
+          <>
         <div  className="cart">
             <div className="cartTop">
               <h2>Корзина</h2>
-              <button><img onClick={cartClose} className="closeButton" src="/img/close.svg" alt="close"></img></button> {/*Вытаскиваем из пропсов функцию, закрывающую карточку */}
+              <button><img onClick={cartClose} className="closeButton" src="/img/close.svg" alt="close"></img></button>
           </div>
           
           
@@ -26,11 +54,11 @@ function Drawer({cartClose, onRemove, items = []}) {
           ))}
           </div>
           ) : (
-
+            
           <div className='emptyBox'>
-            <img src="./img/emptyBox.jpg"></img>
-            <h2>Корзина пуста</h2>
-            <p>Добавте хотя бы один товар, чтобы сделать заказ</p>
+            <img alt="статус заказа" src={isOrderComplete ? "./img/ready.jpg" : "./img/emptyBox.jpg"}></img>
+            <h2>{isOrderComplete ? "Заказ оформлен!" : "Корзина пуста"}</h2>
+            <p>{isOrderComplete ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке` : `Добавте хотя бы один товар, чтобы сделать заказ`}</p>
           </div>)}
           </div>
           
@@ -42,17 +70,17 @@ function Drawer({cartClose, onRemove, items = []}) {
               <li>
                 <span>Итого:</span>
               <div></div>
-              <b>29 498 руб.</b>
+              <b>{totalPrice} руб.</b>
               </li>
               <li>
                 <span>Налог 5%:</span>
                 <div></div>
-                <b>1474 руб.</b>
+                <b>{Math.floor(totalPrice * 0.05)} руб.</b>
                 </li>
             </ul>
             
-            <button className="greenButton">
-              <div>Оформить заказ</div>
+            <button onClick={onClickOrder} className="greenButton">
+              <div> Оформить заказ</div>
               <img src="/img/arrowRight.svg" alt=""></img>
             </button>
           </div>)
@@ -60,7 +88,7 @@ function Drawer({cartClose, onRemove, items = []}) {
                 <div>Вернуться назад</div>
                 <img className="arrowRight" src="/img/arrowLeft.svg" alt=""></img>
               </button>}
-
+              </>
         </div>
     </div>
     )

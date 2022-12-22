@@ -6,6 +6,7 @@ import Drawer from './components/Drawer';
 
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
+import Orders from './pages/Orders';
 
 export const AppContext = React.createContext({})
 
@@ -17,7 +18,7 @@ function App() {
   const [favorites, setFavorites] = React.useState([])
   const [searchValue, setSearchValue] = React.useState('') // Хук для отслеживания значения в поисковой строке
   const [isLoading, setIsLoading] = React.useState(true)
-
+ 
 
   React.useEffect(()=> {
     async function fetchData() {
@@ -103,10 +104,9 @@ function App() {
   }
 
   const isItemAdded = (id) => {
-    return cartItems.some((obj) => Number(obj.id) === Number(id))
+    return cartItems.some((obj) => Number(obj.parentId) === Number(id))
   }
 
-  //---------------------------------------------
 
   return (
     <AppContext.Provider 
@@ -115,16 +115,20 @@ function App() {
       cartItems, 
       favorites, 
       onAddFavorite,
-      isItemAdded
+      onAddToCart,
+      isItemAdded,
+      setCartItems
       }}>
       <div className="wrapper"> 
-      {cartOpened && 
+      <div>
+
       <Drawer 
         items={cartItems} 
         onRemove={onRemoveItem} 
         cartClose={() => setCartOpened(false)}
-      />} 
-
+        opened={cartOpened}
+      /> 
+      </div>
       <div className="container"> 
         <div className="content">
           <Header 
@@ -149,12 +153,11 @@ function App() {
               onAddFavorite={onAddFavorite}
               />
             }/>
+            <Route path="/orders" exact element={
+              <Orders
+              />
+            }/>
             </Routes> 
-            
-            {/* <Route path="orders" exact>
-              <Orders />
-            </Route> */}
-
         </div>
       </div>
     </div>
