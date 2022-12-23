@@ -18,6 +18,7 @@ function App() {
   const [favorites, setFavorites] = React.useState([])
   const [searchValue, setSearchValue] = React.useState('') // Хук для отслеживания значения в поисковой строке
   const [isLoading, setIsLoading] = React.useState(true)
+  const [isEmptyFavorited, setisEmptyFavorited] = React.useState()
  
 
   React.useEffect(()=> {
@@ -43,9 +44,9 @@ function App() {
   
 
   const onAddToCart = async (obj) => {
-    try {const findItem = cartItems.find(item => Number(item.id) === Number(obj.id))
+    try {const findItem = cartItems.find(item => Number(item.parentId) === Number(obj.id))
     if (findItem) {
-      setCartItems(prev =>  prev.filter(item => Number(item.id) !== Number(obj.id))) //сохрани только те айтемы, которые не рнавны новым пришедшим
+      setCartItems(prev =>  prev.filter(item => Number(item.parentId) !== Number(obj.id))) //сохрани только те айтемы, которые не рнавны новым пришедшим
       await axios.delete(`https://638355396e6c83b7a990e6ac.mockapi.io/cart/${findItem.id}`)
     } else {
       setCartItems(prev => [...prev, obj]) 
@@ -53,7 +54,7 @@ function App() {
       await axios.post('https://638355396e6c83b7a990e6ac.mockapi.io/cart', obj)
       setCartItems((prev) =>
         prev.map((item) => {
-          if (item.id === data.id) {
+          if (item.parentId === data.parentId) {
             return {
               ...item,
               id: data.id
@@ -82,13 +83,16 @@ function App() {
   }
 
   const onAddFavorite = async (obj) => { //отслеживаем состояние корзины, добавлем к новому массиву старые значения и актуальную информацию (товары, которые были добавлены)
+    
     try {
       if (favorites.find(favObj => Number(favObj.id) === Number(obj.id))) {
         axios.delete(`https://638355396e6c83b7a990e6ac.mockapi.io/favorites/${obj.id}`)
         setFavorites((prev =>  prev.filter(item => Number(item.id) !== Number(obj.id))) )
+       
       } else {
         const {data} = await axios.post('https://638355396e6c83b7a990e6ac.mockapi.io/favorites', obj)
         setFavorites(prev =>  [...prev, data]) 
+       
     }
     } catch (error) {
       alert('Не удалось добавить в фавориты')
@@ -151,6 +155,8 @@ function App() {
             <Route path="/favorites" exact element={
               <Favorites
               onAddFavorite={onAddFavorite}
+              // isEmptyFavorited={isEmptyFavorited}
+              // setisEmptyFavorited={setisEmptyFavorited}
               />
             }/>
             <Route path="/orders" exact element={

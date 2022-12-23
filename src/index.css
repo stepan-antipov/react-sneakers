@@ -83,7 +83,7 @@ button {
   padding: 0 30px 0 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+
   z-index: 50;
   transition: transform 0.35s ease-in-out;
   opacity: 1;
@@ -305,6 +305,7 @@ max-width: 1080px;
 
 .emptyBox {
   margin-top: 230px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -370,7 +371,65 @@ left: 347px;
 }
 
 .buttonTop {
-  margin-bottom: 580px;
+  margin-bottom: 50px;
+}
+
+.emptyOrders {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.emptyFavorites {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.favorites-smile {
+  display: flex;
+  justify-content: center;
+}
+
+.orders-info p{
+  
+  margin-top: 11px;
+  display: flex;
+  text-align: center;
+}
+
+.orders-info h2{
+  
+  display: block;
+  margin-top: 24px;
+  text-align: center;
+  
+}
+
+
+.buttonMargin img {
+  margin-right: 6px;
+}
+
+.favorites-info p{
+  margin-top: 11px;
+  display: flex;
+  text-align: center;
+}
+
+.favorites-info h2 {
+  display: block;
+margin-top: 24px;
+text-align: center;
+
+}
+
+.buttonMargin {
+  margin-top: 30px;
 }
 
 /*******************************************************/
@@ -469,85 +528,8 @@ left: 347px;
  }
 }
 
-@media (max-height: 1180px) {
-  .buttonTop{
-    margin-bottom: 540px;
-  }
-  .emptyBox {
-    /* margin-top: 190px; */
-  }
-}
-
-@media (max-height: 1140px) {
-  .buttonTop{
-    margin-bottom: 500px;
-  }
-
-}
-
-@media (max-height: 1100px) {
-  .buttonTop{
-    margin-bottom: 450px;
-  }
-
-}
-
-@media (max-height: 1050px) {
-  .buttonTop{
-    margin-bottom: 400px;
-  }
-  .emptyBox {
-    margin-top: 200px;
-  }
-}
-
-@media (max-height: 1000px) {
-  .buttonTop{
-    margin-bottom: 350px;
-  }
-  .emptyBox {
-    margin-top: 170px;
-  }
-}
-
-@media (max-height: 900px) {
-  .buttonTop{
-    margin-bottom: 300px;
-  }
-  .emptyBox {
-    margin-top: 150px;
-  }
-}
-
-@media (max-height: 820px) {
-  .buttonTop{
-    margin-bottom: 250px;
-  }
+@media (max-height: 700px) {
   .emptyBox {
     margin-top: 100px;
-  }
-}
-
-@media (max-height: 730px) {
-  .buttonTop{
-    margin-bottom: 200px;
-  }
-}
-
-@media (max-height: 666px) {
-  .buttonTop{
-    margin-bottom: 150px;
-  }
-  .emptyBox img {
-    width: 100px;
-  }
-}
-
-@media (max-height: 600px) {
-  .buttonTop{
-    margin-bottom: 100px;
-  }
-  .emptyBox {
-    margin-top: 50px;
   }
 }

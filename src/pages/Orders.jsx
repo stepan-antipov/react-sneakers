@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from'../components/Card/Card';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
  function Orders() {
     const [orders, setOrders] = React.useState([])
@@ -28,6 +29,7 @@ import axios from 'axios';
             <div className="top">
                  <h1>Мои заказы</h1>
             </div>
+            {orders.length > 0 ? (
             <section className="card-section">
                 {(isLoading ? [...Array(12)] : orders).map((item, index) => (
                     <Card key={index}
@@ -35,7 +37,18 @@ import axios from 'axios';
                     {...item}
                     />
                 ))} 
-            </section>
+            </section>)
+            : (<section className='emptyOrders'> 
+            <div className='orders-info'>
+                <div className='favorites-smile'><img src="/img/sadSmile2.jpg"></img></div>
+                <h2>У вас нет заказов</h2>
+                <p>Вы не оформили ни одного заказа</p>
+                <Link to="/">
+                    <button className='greenButton buttonMargin'><img src="/img/arrowLeft.svg"></img>Вернуться назад</button>
+                </Link>
+            </div>
+        </section>)}
+
         </main>
     </div>)}
 
